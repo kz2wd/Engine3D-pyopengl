@@ -28,5 +28,8 @@ class Environment3D:
         for i in range(len(self.all_vertices)):
             for edge in self.all_edges[i]:
                 print(edge)
+            print()
+            for vertice in self.all_vertices[i]:
+                print(vertice)
 
 

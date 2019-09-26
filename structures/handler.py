@@ -15,3 +15,8 @@ class StructureHandler:
         cylinder = structures.objects.Cylinder(center, radius, precision, length, gap, plan)
         self.vertices = cylinder.vertices
         self.edges = cylinder.edges
+
+    def create_complex_cylinder(self, first_circle_position=None, radius=None, gap=1, plan=1):
+        complex_cylinder = structures.objects.ComplexCylinder(first_circle_position, radius, gap, plan)
+        self.vertices = complex_cylinder.vertices
+        self.edges = complex_cylinder.edges

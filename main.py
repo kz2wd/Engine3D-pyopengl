@@ -22,13 +22,7 @@ def main():
 
     structures_handler = structures.handler.StructureHandler()
 
-    structures_handler.create_cylinder(length=10, gap=3)
-    environment_one.add_structure(structures_handler.vertices, structures_handler.edges)
-
-    structures_handler.create_cylinder(radius=1, precision=30, length=3, gap=5, plan=2)
-    environment_one.add_structure(structures_handler.vertices, structures_handler.edges)
-
-    structures_handler.create_cylinder(radius=2, precision=5, length=10, gap=2, plan=3)
+    structures_handler.create_complex_cylinder()
     environment_one.add_structure(structures_handler.vertices, structures_handler.edges)
 
     if move:
