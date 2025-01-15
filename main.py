@@ -6,6 +6,7 @@ from OpenGL.GLU import *
 
 import environment_3D as Env3D
 import structures.handler
+from structures.random_prism import Prism
 
 
 def main():
@@ -22,8 +23,12 @@ def main():
 
     structures_handler = structures.handler.StructureHandler()
 
-    structures_handler.create_complex_cylinder()
-    environment_one.add_structure(structures_handler.vertices, structures_handler.edges)
+    # structures_handler.create_complex_cylinder()
+    prism = Prism()
+    glTranslatef(0, 0.2, -15)
+    environment_one.add_structure(prism.vertices, prism.edges)
+    rotation_time = 200
+    curr_rot = 0
 
     if move:
         while True:
@@ -49,12 +54,18 @@ def main():
                     if event.button == 5:
                         glTranslatef(0, 0.2, 0)
 
-                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-                environment_one.create_environment()
-                # glRotatef(1, 1, 1, 1)
-                pygame.display.flip()
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+            environment_one.create_environment()
+            glRotatef(1, 1, 1, 1)
+            pygame.display.flip()
 
-                pygame.time.wait(10)
+            curr_rot += 1
+            if curr_rot >= rotation_time:
+                curr_rot = 0
+                prism = Prism()
+                environment_one.flush()
+                environment_one.add_structure(prism.vertices, prism.edges)
+            pygame.time.wait(10)
     else:
         while True:
             for event in pygame.event.get():
@@ -64,7 +75,7 @@ def main():
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
             environment_one.create_environment()
-            # glRotatef(1, 1, 1, 1)
+            glRotatef(1, 1, 1, 1)
             pygame.display.flip()
 
             pygame.time.wait(10)

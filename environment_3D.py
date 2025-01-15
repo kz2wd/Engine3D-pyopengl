@@ -15,6 +15,10 @@ class Environment3D:
         self.all_vertices.append(vertices)
         self.all_edges.append(edges)
 
+    def flush(self):
+        self.all_vertices = []
+        self.all_edges = []
+
     def create_environment(self):
         if self.display == "lines":
             glBegin(GL_LINES)
